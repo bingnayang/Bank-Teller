@@ -18,15 +18,15 @@
 	</nav>
 
 	<div class="container">
-		<form action="${pageContext.request.contextPath}/TransactionController" method="POST">
+		<form action="${pageContext.request.contextPath}/TransactionController" method="GET">
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="First Name" name="firstName"> 
+				<input type="text" class="form-control" placeholder="First Name" name="firstName" value="Mary"> 
 			</div>
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Last Name" name="lastName"> 
+				<input type="text" class="form-control" placeholder="Last Name" name="lastName" value="Anderson"> 
 			</div>
 			<div class="form-group">
-				<input type="number" class="form-control" placeholder="Account Number" name="accountNumber">
+				<input type="number" class="form-control" placeholder="Account Number" name="accountNumber" value="12300001">
 			</div>
 			<button type="submit" class="btn btn-primary btn-block">Submit</button>
 		</form>

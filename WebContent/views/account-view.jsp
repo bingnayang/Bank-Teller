@@ -7,6 +7,8 @@
 <title>Account View Page</title>
 </head>
 <body>
-
+	<div>
+		<h3>Account:</h3>
+	</div>
 </body>
 </html>

@@ -8,15 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import in.bank.dao.TransactionDAO;
+import in.bank.dao.TransactionDAOImplement;
+import in.bank.entity.AccountInfo;
 
 public class TransactionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       
+	TransactionDAO accountDAO = null;
 
-
-//    public TransactionController() {
-//    	
-//    }
+    public TransactionController() {
+    	accountDAO = new TransactionDAOImplement();
+    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String firstName = request.getParameter("firstName");
@@ -27,13 +30,21 @@ public class TransactionController extends HttpServlet {
 		System.out.println("Last Name: "+lastName);
 		System.out.println("Account Number: "+accountNumber);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/teller-mode.jsp");
+		AccountInfo accountInfo = accountDAO.getAccount(firstName,lastName,accountNumber);
+		System.out.println("First Name: "+accountInfo.getFirstName());
+		System.out.println("Last Name: "+accountInfo.getLastName());
+		System.out.println("Account Number: "+accountInfo.getAccountNumber());
+		System.out.println("Account Type: "+accountInfo.getAccountType());
+		System.out.println("Balance: "+accountInfo.getAccountBalance());
+//		
+		request.setAttribute("accountInfo",accountInfo);	
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/account-view.jsp");
 		dispatcher.forward(request,response);
+
 	}
 
 
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
-//	}
 
+	
 }

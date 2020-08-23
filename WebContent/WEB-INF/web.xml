@@ -19,4 +19,14 @@
     <servlet-name>TransactionController</servlet-name>
     <url-pattern>/TransactionController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TellerController</display-name>
+    <servlet-name>TellerController</servlet-name>
+    <servlet-class>in.bank.controller.TellerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TellerController</servlet-name>
+    <url-pattern>/TellerController</url-pattern>
+  </servlet-mapping>
 </web-app>
