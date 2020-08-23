@@ -31,12 +31,14 @@ public class TransactionController extends HttpServlet {
 		System.out.println("Account Number: "+accountNumber);
 		
 		AccountInfo accountInfo = accountDAO.getAccount(firstName,lastName,accountNumber);
-		System.out.println("First Name: "+accountInfo.getFirstName());
-		System.out.println("Last Name: "+accountInfo.getLastName());
-		System.out.println("Account Number: "+accountInfo.getAccountNumber());
-		System.out.println("Account Type: "+accountInfo.getAccountType());
-		System.out.println("Balance: "+accountInfo.getAccountBalance());
-//		
+		double balance = accountDAO.getBalance(accountNumber);
+		accountInfo.setAccountBalance(balance);
+		
+//		System.out.println("First Name: "+accountInfo.getFirstName());
+//		System.out.println("Last Name: "+accountInfo.getLastName());
+//		System.out.println("Account Number: "+accountInfo.getAccountNumber());
+//		System.out.println("Account Type: "+accountInfo.getAccountType());
+		
 		request.setAttribute("accountInfo",accountInfo);	
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/account-view.jsp");

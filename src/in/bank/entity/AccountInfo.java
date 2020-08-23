@@ -6,6 +6,7 @@ public class AccountInfo {
 	private String accountNumber;
 	private String accountType;
 	private double accountBalance;
+	
 	public String getFirstName() {
 		return firstName;
 	}
