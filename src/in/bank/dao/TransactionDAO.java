@@ -1,5 +1,7 @@
 package in.bank.dao;
 
-public interface TransactionDAO {
+import in.bank.entity.AccountInfo;
 
+public interface TransactionDAO {
+	AccountInfo getAccount();
 }
