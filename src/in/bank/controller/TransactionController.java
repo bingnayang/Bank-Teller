@@ -22,6 +22,19 @@ public class TransactionController extends HttpServlet {
     public TransactionController() {
     	accountDAO = new TransactionDAOImplement();
     }
+    
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String amountInput = req.getParameter("amount");
+		String transType = req.getParameter("transactionType");
+		
+		System.out.println("Transaction: "+transType);
+		System.out.println("Amount Input: "+amountInput);
+		
+		
+	}
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String firstName = request.getParameter("firstName");
