@@ -9,4 +9,6 @@ public interface TransactionDAO {
 	AccountInfo getAccount(String firstName, String lastName, String accountNumber);
 	List<TransactionInfo> getTransactionList(String accountNumber);
 	double getBalance(String accountNumber);
+	int getTransactionTypeID(String typeName);
+	int getAccountID(String accountNumber);
 }

@@ -106,6 +106,48 @@ public class TransactionDAOImplement implements TransactionDAO {
 		}
 		return list;
 	}
+
+	@Override
+	public int getTransactionTypeID(String typeName) {
+		int transactionId  = 0;
+		String sql = "SELECT transaction_Type_ID FROM transaction_type WHERE transaction_type.transaction_Name = '"+typeName+"'";
+		try {
+			// Get the database connection
+			connection = DBConnectionUtil.openConnection();
+			// Create a statement
+			statement = connection.createStatement();
+			// Execute the query
+			ResultSet resultSet = statement.executeQuery(sql);
+			transactionId = resultSet.getInt(1);
+			System.out.println("SQL: "+sql);			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return transactionId;
+	}
+
+	@Override
+	public int getAccountID(String accountNumber) {
+		int accountId = 0;
+		String sql = "SELECT * FROM account WHERE account.account_Number = "+accountNumber;
+		try {
+			// Get the database connection
+			connection = DBConnectionUtil.openConnection();
+			// Create a statement
+			statement = connection.createStatement();
+			// Execute the query
+			ResultSet resultSet = statement.executeQuery(sql);
+			accountId = resultSet.getInt("account_ID");
+//			System.out.println("SQL: "+sql);			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("getAccountID error............");
+			accountId = -1;
+			e.printStackTrace();
+		}
+		return accountId;
+	}
 	
 	
 

@@ -1,6 +1,9 @@
 package in.bank.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -26,11 +29,30 @@ public class TransactionController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String accountNumberInput = req.getParameter("accountNumber");
 		String amountInput = req.getParameter("amount");
 		String transType = req.getParameter("transactionType");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+		LocalDate currentDate = LocalDate.now();
+		LocalTime currentTime = LocalTime.now();
 		
-		System.out.println("Transaction: "+transType);
-		System.out.println("Amount Input: "+amountInput);
+		int accountID = accountDAO.getAccountID(accountNumberInput);
+		int transactionTypeID = accountDAO.getTransactionTypeID(transType);
+		
+		// Harding coding for now
+		int branchId = 103;
+		int employeeId = 8;
+		
+		
+		//Testing
+		System.out.println("=====================================");
+		System.out.println("Account Number: "+ accountNumberInput+" | Account Id: "+accountID);
+		System.out.println("Amount: "+ amountInput);
+		System.out.println("Transaction Type: "+ transType+" | Transaction Id: "+transactionTypeID);
+		System.out.println("Date: "+currentDate+"| Time: "+currentTime.format(formatter));
+		System.out.println("=====================================");
+		
 		
 		
 	}
