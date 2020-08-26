@@ -62,9 +62,11 @@ public class TransactionController extends HttpServlet {
 		transaction.setEmployee_Id(employeeId);
 		transaction.setAmount(amountInput);
 		
+		
 		boolean testing = accountDAO.addTransaction(transaction);
 		System.out.println("Add Transaction: "+testing);
 		
+
 	}
 
 

@@ -152,9 +152,15 @@ public class TransactionDAOImplement implements TransactionDAO {
 
 	@Override
 	public boolean addTransaction(Transaction trans) {
-
-		String sql = "INSERT INTO transactions (account_ID,branch_ID,transaction_Type_ID,date,time,employee_ID,amount) "
-				+ "VALUES("+trans.getAccount_ID()+","+trans.getBranch_ID()+","+trans.getTransaction_Type_Id()+",'"+trans.getDate()+"','"+trans.getTime()+"',"+trans.getEmployee_Id()+","+trans.getAmount()+")";
+		String sql;
+		if(trans.getTransaction_Type_Id() == 1) {
+			sql = "INSERT INTO transactions (account_ID,branch_ID,transaction_Type_ID,date,time,employee_ID,amount) "
+					+ "VALUES("+trans.getAccount_ID()+","+trans.getBranch_ID()+","+trans.getTransaction_Type_Id()+",'"+trans.getDate()+"','"+trans.getTime()+"',"+trans.getEmployee_Id()+","+trans.getAmount()+")";
+		}else {
+			sql = "INSERT INTO transactions (account_ID,branch_ID,transaction_Type_ID,date,time,employee_ID,amount) "
+					+ "VALUES("+trans.getAccount_ID()+","+trans.getBranch_ID()+","+trans.getTransaction_Type_Id()+",'"+trans.getDate()+"','"+trans.getTime()+"',"+trans.getEmployee_Id()+",-"+trans.getAmount()+")";
+		}
+				
 		System.out.println("SQL: "+sql);
 		try {
 			connection = DBConnectionUtil.openConnection();
@@ -168,7 +174,5 @@ public class TransactionDAOImplement implements TransactionDAO {
 		return true;
 		
 	}
-	
-	
 
 }
