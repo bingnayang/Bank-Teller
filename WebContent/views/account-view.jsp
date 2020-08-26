@@ -38,9 +38,11 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="controlInput">Enter Amount</label> 
+						<label for="controlInput">Enter Amount</label> 						
 						<input type="number" class="form-control" name="amount" step="0.01">
 						<input type="hidden" class="form-control" name="accountNumber" value="${accountInfo.accountNumber}">
+						<input type="hidden" class="form-control" name="accountFirstName" value="${accountInfo.firstName}">
+						<input type="hidden" class="form-control" name="accountLastName" value="${accountInfo.lastName}">
 					</div>
 					<button type="submit" class="btn btn-primary btn-block mb-2">Submit</button>
 				</form>

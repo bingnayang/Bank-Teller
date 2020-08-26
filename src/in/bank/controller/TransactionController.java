@@ -32,6 +32,8 @@ public class TransactionController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String accountNumberInput = req.getParameter("accountNumber");
+		String accountFirstNameInput = req.getParameter("accountFirstName");
+		String accountLastNameInput = req.getParameter("accountLastName");
 		double amountInput = Double.parseDouble(req.getParameter("amount"));
 		String transType = req.getParameter("transactionType");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
@@ -66,7 +68,7 @@ public class TransactionController extends HttpServlet {
 		boolean testing = accountDAO.addTransaction(transaction);
 		System.out.println("Add Transaction: "+testing);
 		
-
+		resp.sendRedirect("TransactionController?firstName="+accountFirstNameInput+"&lastName="+accountLastNameInput+"&accountNumber="+accountNumberInput);
 	}
 
 

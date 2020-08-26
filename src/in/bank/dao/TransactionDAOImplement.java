@@ -166,7 +166,6 @@ public class TransactionDAOImplement implements TransactionDAO {
 			connection = DBConnectionUtil.openConnection();
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.executeUpdate();
-
 		}catch (SQLException e) {
 			e.printStackTrace();
 			return false;
