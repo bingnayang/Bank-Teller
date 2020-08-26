@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.bank.entity.AccountInfo;
+import in.bank.entity.Transaction;
 import in.bank.entity.TransactionInfo;
 import in.bank.util.DBConnectionUtil;
 
@@ -147,6 +148,25 @@ public class TransactionDAOImplement implements TransactionDAO {
 			e.printStackTrace();
 		}
 		return accountId;
+	}
+
+	@Override
+	public boolean addTransaction(Transaction trans) {
+
+		String sql = "INSERT INTO transactions (account_ID,branch_ID,transaction_Type_ID,date,time,employee_ID,amount) "
+				+ "VALUES("+trans.getAccount_ID()+","+trans.getBranch_ID()+","+trans.getTransaction_Type_Id()+",'"+trans.getDate()+"','"+trans.getTime()+"',"+trans.getEmployee_Id()+","+trans.getAmount()+")";
+		System.out.println("SQL: "+sql);
+		try {
+			connection = DBConnectionUtil.openConnection();
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.executeUpdate();
+
+		}catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+		
 	}
 	
 	

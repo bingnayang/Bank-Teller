@@ -7,7 +7,7 @@ public class Transaction {
 	private int transaction_Type_Id;
 	private String date;
 	private String time;
-	private String employee_Id;
+	private int employee_Id;
 	private double amount;
 	
 	public int getTransaction_ID() {
@@ -46,10 +46,10 @@ public class Transaction {
 	public void setTime(String time) {
 		this.time = time;
 	}
-	public String getEmployee_Id() {
+	public int getEmployee_Id() {
 		return employee_Id;
 	}
-	public void setEmployee_Id(String employee_Id) {
+	public void setEmployee_Id(int employee_Id) {
 		this.employee_Id = employee_Id;
 	}
 	public double getAmount() {

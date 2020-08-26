@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import in.bank.dao.TransactionDAO;
 import in.bank.dao.TransactionDAOImplement;
 import in.bank.entity.AccountInfo;
+import in.bank.entity.Transaction;
 import in.bank.entity.TransactionInfo;
 
 public class TransactionController extends HttpServlet {
@@ -31,7 +32,7 @@ public class TransactionController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String accountNumberInput = req.getParameter("accountNumber");
-		String amountInput = req.getParameter("amount");
+		double amountInput = Double.parseDouble(req.getParameter("amount"));
 		String transType = req.getParameter("transactionType");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
 		LocalDate currentDate = LocalDate.now();
@@ -43,8 +44,7 @@ public class TransactionController extends HttpServlet {
 		// Harding coding for now
 		int branchId = 103;
 		int employeeId = 8;
-		
-		
+
 		//Testing
 		System.out.println("=====================================");
 		System.out.println("Account Number: "+ accountNumberInput+" | Account Id: "+accountID);
@@ -52,8 +52,18 @@ public class TransactionController extends HttpServlet {
 		System.out.println("Transaction Type: "+ transType+" | Transaction Id: "+transactionTypeID);
 		System.out.println("Date: "+currentDate+"| Time: "+currentTime.format(formatter));
 		System.out.println("=====================================");
+
+		Transaction transaction = new Transaction();
+		transaction.setAccount_ID(accountID);
+		transaction.setBranch_ID(branchId);
+		transaction.setTransaction_Type_Id(transactionTypeID);
+		transaction.setDate(currentDate.toString());
+		transaction.setTime(currentTime.format(formatter));
+		transaction.setEmployee_Id(employeeId);
+		transaction.setAmount(amountInput);
 		
-		
+		boolean testing = accountDAO.addTransaction(transaction);
+		System.out.println("Add Transaction: "+testing);
 		
 	}
 
