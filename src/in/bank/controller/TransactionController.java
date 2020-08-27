@@ -68,6 +68,7 @@ public class TransactionController extends HttpServlet {
 		boolean testing = accountDAO.addTransaction(transaction);
 		System.out.println("Add Transaction: "+testing);
 		
+		// Redirect page
 		resp.sendRedirect("TransactionController?firstName="+accountFirstNameInput+"&lastName="+accountLastNameInput+"&accountNumber="+accountNumberInput);
 	}
 
