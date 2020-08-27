@@ -1,5 +1,7 @@
 package in.bank.dao;
 
-public interface SearchDAO {
+import in.bank.entity.AccountInfo;
 
+public interface SearchDAO {
+	AccountInfo searchAccount(AccountInfo name);
 }

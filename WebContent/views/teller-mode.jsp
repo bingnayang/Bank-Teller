@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,6 +62,26 @@
 				</form>
 	  		</div>
 		</div>
+		
+			<div class="container">
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+					<th scope="col">Account Number</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr>
+						<td>${account.firstName}</td>
+						<td>${account.lastName}</td>
+						<td>${account.accountNumber}</td>
+					</tr>
+			</tbody>
+		</table>
+	</div>
+		
 	</div>
 </body>
 </html>

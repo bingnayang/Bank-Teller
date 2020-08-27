@@ -3,7 +3,7 @@ package in.bank.entity;
 public class AccountInfo {
 	private String firstName;
 	private String lastName;
-	private String accountNumber;
+	private int accountNumber;
 	private String accountType;
 	private double accountBalance;
 	
@@ -19,10 +19,10 @@ public class AccountInfo {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getAccountNumber() {
+	public int getAccountNumber() {
 		return accountNumber;
 	}
-	public void setAccountNumber(String accountNumber) {
+	public void setAccountNumber(int accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 	public String getAccountType() {

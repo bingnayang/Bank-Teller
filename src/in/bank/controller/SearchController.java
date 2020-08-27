@@ -7,17 +7,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import in.bank.dao.TransactionDAO;
-import in.bank.dao.TransactionDAOImplement;
+import in.bank.dao.SearchDAO;
+import in.bank.dao.SearchDAOImplement;
+import in.bank.entity.AccountInfo;
 
 public class SearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	TransactionDAO accountDAO = null;
+	SearchDAO searchDAO = null;
 
     public SearchController() {
-    	accountDAO = new TransactionDAOImplement();
+    	searchDAO = new SearchDAOImplement();
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,8 +25,13 @@ public class SearchController extends HttpServlet {
 		String lastName = request.getParameter("lastName");
 		
 		System.out.println("Search Account Number By: "+firstName+" "+lastName);
+		AccountInfo accountInfo = new AccountInfo();
+		accountInfo.setFirstName(firstName);
+		accountInfo.setLastName(lastName);
+		AccountInfo account = searchDAO.searchAccount(accountInfo);
+		System.out.println("Account Number: "+account.getAccountNumber());
 		
-		
+		request.setAttribute("account",account);	
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/teller-mode.jsp");
 		dispatcher.forward(request,response);

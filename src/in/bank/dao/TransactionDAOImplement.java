@@ -36,7 +36,7 @@ public class TransactionDAOImplement implements TransactionDAO {
 				account = new AccountInfo();
 				account.setFirstName(resultSet.getString("first_Name"));
 				account.setLastName(resultSet.getString("last_Name"));
-				account.setAccountNumber(resultSet.getString("account_Number"));
+				account.setAccountNumber(resultSet.getInt("account_Number"));
 				account.setAccountType(resultSet.getString("type_Name"));
 			}
 		}catch(SQLException e) {
