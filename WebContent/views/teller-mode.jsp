@@ -12,9 +12,9 @@
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <title>The Bank</title>
 </head>
-<body>
-
-	<nav class="navbar navbar-light bg-light mb-2">
+<body class="bg-light">
+	<!-- 	Navbar Section -->
+	<nav class="navbar navbar-dark bg-primary mb-2">
 		<a class="navbar-brand" href="#"> <i class="fas fa-piggy-bank"></i>
 			Piggy Bank
 		</a>
@@ -22,8 +22,8 @@
 	<!-- 	Form to get account information -->
 	<div class="container mb-2">
 		<div class="card">
-			<h5 class="text-center">Get Account Information</h5>
 			<div class="card-body">
+				<h5 class="text-center">Get Account Information</h5>
 				<form
 					action="${pageContext.request.contextPath}/TransactionController"
 					method="GET">
@@ -47,41 +47,28 @@
 	<!-- 	Form to search account number -->
 	<div class="container">
 		<div class="card">
-			<h5 class="text-center">Search For Account Number</h5>
-	  		<div class="card-body">
-	    		<form
-					action="${pageContext.request.contextPath}/SearchController"
+			<div class="card-body">
+				<h5 class="text-center">Search Account Number</h5>
+				<form action="${pageContext.request.contextPath}/SearchController"
 					method="GET">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="First Name" name="firstName">
+						<input type="text" class="form-control" placeholder="First Name"
+							name="firstName">
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Last Name" name="lastName">
+						<input type="text" class="form-control" placeholder="Last Name"
+							name="lastName">
 					</div>
 					<button type="submit" class="btn btn-primary btn-block">Search</button>
 				</form>
-	  		</div>
+			</div>
+ 			<div class="container">
+				${account.firstName} ${account.lastName} ${account.accountNumber}
+			</div>
 		</div>
-		
-			<div class="container">
-		<table class="table">
-			<thead class="thead-dark">
-				<tr>
-					<th scope="col">First Name</th>
-					<th scope="col">Last Name</th>
-					<th scope="col">Account Number</th>
-				</tr>
-			</thead>
-			<tbody>
-					<tr>
-						<td>${account.firstName}</td>
-						<td>${account.lastName}</td>
-						<td>${account.accountNumber}</td>
-					</tr>
-			</tbody>
-		</table>
-	</div>
-		
+
+
+
 	</div>
 </body>
 </html>

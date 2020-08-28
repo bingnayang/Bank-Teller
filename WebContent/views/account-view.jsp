@@ -24,7 +24,11 @@
 		<h5>Account Type: ${accountInfo.accountType}</h5>
 		<h5>Account Balance:$ ${accountInfo.accountBalance}</h5>
 	</div>
-
+	
+	<div class="container">
+		<button type="submit" class="btn btn-primary mb-2">Account Transaction PDF</button>
+	</div>
+	
 	<div class="container mb-2">
 		<div class="card">
 			<div class="card-body">

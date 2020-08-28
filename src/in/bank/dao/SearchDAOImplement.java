@@ -36,6 +36,7 @@ public class SearchDAOImplement implements SearchDAO {
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
+			return account = null;
 		}
 		// TODO Auto-generated method stub
 		return account;
