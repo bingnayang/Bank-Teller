@@ -62,6 +62,7 @@
 					<th scope="col">Time</th>
 					<th scope="col">Transaction</th>
 					<th scope="col">Amount</th>
+					<th scope="col">View Detail</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -71,15 +72,11 @@
 						<td>${transaction.transaction_Time}</td>
 						<td>${transaction.transaction_Type}</td>
 						<td>$ ${transaction.amount}</td>
+						<td><button type="button" class="btn btn-info" onclick="window.location.href='${pageContext.request.contextPath}/BookInfoController?action=RENT&id=${book.book_ID}'">View</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
-
-<!-- 	<div class="container">
-		<button type="button" class="btn btn-primary">Deposit</button>
-		<button type="button" class="btn btn-primary">Withdraw</button>
-	</div> -->
 </body>
 </html>
