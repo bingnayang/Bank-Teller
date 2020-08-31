@@ -22,7 +22,7 @@ public class PDFController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String accountNumberInput = request.getParameter("accountNumber");
 		System.out.println("Account Number: "+ accountNumberInput);
-
+		boolean account = pdfDAO.printExamToPDF();
 		
 	}
 

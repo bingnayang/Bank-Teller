@@ -9,14 +9,14 @@ public class PdfDAOImplement implements PdfDAO {
 
 	@Override
 	public boolean printExamToPDF() {
-      String dest = "/Users/Bing/eclipse-workspace/Bank-Teller/src/AccountInfo.pdf";
+      String dest = "/Users/Bing/eclipse-workspace/Bank-Teller/AccountInfo.pdf";
       com.itextpdf.text.Document document = new com.itextpdf.text.Document();
 
       try {
           PdfWriter.getInstance(document, new FileOutputStream(dest));
           // Open
           document.open();
-          // Setup font for exam title
+          // Setup font for title
           Font titleFront = new Font();
           titleFront.setStyle(Font.BOLD);
           titleFront.setSize(20);
@@ -42,7 +42,9 @@ public class PdfDAOImplement implements PdfDAO {
           System.out.println("Account Transaction PDF File Created");
       } catch (Exception e) {
           e.getMessage();
+          return false;
       }
+      return true;
 	}
 
 }
