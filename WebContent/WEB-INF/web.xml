@@ -39,4 +39,14 @@
     <servlet-name>SearchController</servlet-name>
     <url-pattern>/SearchController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PDFController</display-name>
+    <servlet-name>PDFController</servlet-name>
+    <servlet-class>in.bank.controller.PDFController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PDFController</servlet-name>
+    <url-pattern>/PDFController</url-pattern>
+  </servlet-mapping>
 </web-app>

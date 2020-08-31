@@ -26,7 +26,7 @@
 	</div>
 	
 	<div class="container">
-		<button type="submit" class="btn btn-primary mb-2">Account Transaction PDF</button>
+		<button type="submit" class="btn btn-primary mb-2"  onclick="window.location.href='${pageContext.request.contextPath}/PDFController?accountNumber=${accountInfo.accountNumber}'">Account Transaction PDF</button>
 	</div>
 	
 	<div class="container mb-2">
@@ -72,7 +72,7 @@
 						<td>${transaction.transaction_Time}</td>
 						<td>${transaction.transaction_Type}</td>
 						<td>$ ${transaction.amount}</td>
-						<td><button type="button" class="btn btn-info" onclick="window.location.href='${pageContext.request.contextPath}/BookInfoController?action=RENT&id=${book.book_ID}'">View</button></td>
+						<td><button type="button" class="btn btn-info" onclick="window.location.href='${pageContext.request.contextPath}/TransactionController?action=VIEW&id=${transaction.transaction_ID}'">View</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
