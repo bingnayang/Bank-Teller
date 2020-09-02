@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Font;
@@ -12,6 +13,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import in.bank.entity.AccountInfo;
+import in.bank.entity.TransactionInfo;
 import in.bank.util.DBConnectionUtil;
 
 public class PdfDAOImplement implements PdfDAO {
@@ -23,7 +25,7 @@ public class PdfDAOImplement implements PdfDAO {
 	
 	
 	@Override
-	public boolean printExamToPDF(AccountInfo accountInfo) {				
+	public boolean printExamToPDF(AccountInfo accountInfo,List<TransactionInfo> accountTransactionList) {				
       String dest = "/Users/Bing/eclipse-workspace/Bank-Teller/AccountInfo.pdf";
       com.itextpdf.text.Document document = new com.itextpdf.text.Document();
 
@@ -40,9 +42,13 @@ public class PdfDAOImplement implements PdfDAO {
           examTitle.setAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
           examTitle.setSpacingAfter(20f);
           document.add(examTitle);
-
+          // Create Account information section
           document.add(new Paragraph("Name: "+accountInfo.getFirstName()+" "+accountInfo.getLastName()));
           document.add(new Paragraph("Account Number: "+accountInfo.getAccountNumber()));
+          
+          for(TransactionInfo list:accountTransactionList) {
+              document.add(new Paragraph(list.getTransaction_Date()+" "+list.getTransaction_Time()+" "+list.getAmount()));
+          }
 
           // Close
           document.close();
