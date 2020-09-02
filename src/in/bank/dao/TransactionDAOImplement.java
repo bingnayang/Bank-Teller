@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import in.bank.entity.AccountInfo;
 import in.bank.entity.Transaction;
@@ -76,6 +78,9 @@ public class TransactionDAOImplement implements TransactionDAO {
 		String sql = "SELECT * " + 
 				"FROM transactionView " + 
 				"WHERE transactionView.account_Number = '"+accountNumber+"'";
+		Locale locale = new Locale("en", "US");      
+		NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+		
 		// Create reference variables
 		List<TransactionInfo> list = null;
 		TransactionInfo transactionList = null;	

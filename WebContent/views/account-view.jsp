@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +72,8 @@
 						<td>${transaction.transaction_Date}</td>
 						<td>${transaction.transaction_Time}</td>
 						<td>${transaction.transaction_Type}</td>
-						<td>$ ${transaction.amount}</td>
+						<fmt:setLocale value = "en_US"/>
+						<td><fmt:formatNumber value = "${transaction.amount}" type = "currency"/></td>
 						<td><button type="button" class="btn btn-info" onclick="window.location.href='${pageContext.request.contextPath}/TransactionController?action=VIEW&id=${transaction.transaction_ID}'">View</button></td>
 					</tr>
 				</c:forEach>
