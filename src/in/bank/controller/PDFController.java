@@ -34,10 +34,10 @@ public class PDFController extends HttpServlet {
 		System.out.println("Account Number: "+ accountNumberInput);
 		AccountInfo accountInfo = pdfDAO.getAccountInfo(accountNumberInput);
 		List<TransactionInfo> transactionList = accountDAO.getTransactionList(accountNumberInput);
-		
+		double balance = accountDAO.getBalance(accountNumberInput);
 		
 		// Send accountInfo to pdf
-		boolean account = pdfDAO.printExamToPDF(accountInfo,transactionList);
+		boolean account = pdfDAO.printExamToPDF(accountInfo,transactionList,balance);
 		
 //		request.sendRedirect("TransactionController?firstName="+accountFirstNameInput+"&lastName="+accountLastNameInput+"&accountNumber="+accountNumberInput);
 

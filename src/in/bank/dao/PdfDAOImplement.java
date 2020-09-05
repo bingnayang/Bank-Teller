@@ -32,7 +32,7 @@ public class PdfDAOImplement implements PdfDAO {
 	
 	
 	@Override
-	public boolean printExamToPDF(AccountInfo accountInfo,List<TransactionInfo> accountTransactionList) {				
+	public boolean printExamToPDF(AccountInfo accountInfo,List<TransactionInfo> accountTransactionList,double balance) {				
       String dest = "/Users/Bing/eclipse-workspace/Bank-Teller/AccountInfo.pdf";
       com.itextpdf.text.Document document = new com.itextpdf.text.Document();
 
@@ -55,7 +55,7 @@ public class PdfDAOImplement implements PdfDAO {
           personalinfo.setSpacingAfter(20f);
           document.add(personalinfo);
           
-          //Create Account information section
+          //Print Account information
           document.add(new Paragraph("----------------------------------------"));
           document.add(new Paragraph("Name: "+accountInfo.getFirstName()+" "+accountInfo.getLastName()));
           document.add(new Paragraph("Account Number: "+accountInfo.getAccountNumber()));
@@ -67,7 +67,7 @@ public class PdfDAOImplement implements PdfDAO {
           accountTransaction.setSpacingAfter(20f);
           document.add(accountTransaction);
           
-          //Create Account transaction
+          //Print Account transaction
           for(TransactionInfo list:accountTransactionList) {
               document.add(new Paragraph(list.getTransaction_Date()+" | "+list.getTransaction_Type()+" | $ "+list.getAmount()));
           }
@@ -77,7 +77,9 @@ public class PdfDAOImplement implements PdfDAO {
           accountBalance.setAlignment(com.itextpdf.text.Element.ALIGN_LEFT);
           accountBalance.setSpacingAfter(20f);
           document.add(accountBalance);
-          document.add(new Paragraph());  
+          
+          // Print balance
+          document.add(new Paragraph("$"+balance));  
           
           // Close
           document.close();

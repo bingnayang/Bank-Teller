@@ -10,6 +10,6 @@ import in.bank.entity.TransactionInfo;
 
 public interface PdfDAO {
 	AccountInfo getAccountInfo(String accountNumber);
-	boolean printExamToPDF(AccountInfo accountInfo,List<TransactionInfo> accountTransactionList);
+	boolean printExamToPDF(AccountInfo accountInfo,List<TransactionInfo> accountTransactionList,double balance);
 
 }
