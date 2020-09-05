@@ -7,9 +7,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import in.bank.entity.AccountInfo;
@@ -30,26 +37,48 @@ public class PdfDAOImplement implements PdfDAO {
       com.itextpdf.text.Document document = new com.itextpdf.text.Document();
 
       try {
-          PdfWriter.getInstance(document, new FileOutputStream(dest));
+          PdfWriter.getInstance(document, new FileOutputStream(dest));  
+
           // Open
           document.open();
           // Setup font for title
           Font titleFront = new Font();
           titleFront.setStyle(Font.BOLD);
           titleFront.setSize(20);
+          Font subTitleFront = new Font();
+          subTitleFront.setStyle(Font.BOLD);
+          subTitleFront.setSize(16);
+
           // Create Title
-          Paragraph examTitle = new Paragraph("Bank of Teller",titleFront);
-          examTitle.setAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
-          examTitle.setSpacingAfter(20f);
-          document.add(examTitle);
-          // Create Account information section
+          Paragraph personalinfo = new Paragraph("Bank of Teller",titleFront);
+          personalinfo.setAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+          personalinfo.setSpacingAfter(20f);
+          document.add(personalinfo);
+          
+          //Create Account information section
+          document.add(new Paragraph("----------------------------------------"));
           document.add(new Paragraph("Name: "+accountInfo.getFirstName()+" "+accountInfo.getLastName()));
           document.add(new Paragraph("Account Number: "+accountInfo.getAccountNumber()));
+          document.add(new Paragraph("----------------------------------------"));        
           
+          //Create Account transaction section
+          Paragraph accountTransaction = new Paragraph("Transactions",subTitleFront);
+          accountTransaction.setAlignment(com.itextpdf.text.Element.ALIGN_LEFT);
+          accountTransaction.setSpacingAfter(20f);
+          document.add(accountTransaction);
+          
+          //Create Account transaction
           for(TransactionInfo list:accountTransactionList) {
-              document.add(new Paragraph(list.getTransaction_Date()+" "+list.getTransaction_Time()+" "+list.getAmount()));
+              document.add(new Paragraph(list.getTransaction_Date()+" | "+list.getTransaction_Type()+" | $ "+list.getAmount()));
           }
-
+    
+          //Create Account transaction section
+          Paragraph accountBalance = new Paragraph("Balance",subTitleFront);
+          accountBalance.setAlignment(com.itextpdf.text.Element.ALIGN_LEFT);
+          accountBalance.setSpacingAfter(20f);
+          document.add(accountBalance);
+          document.add(new Paragraph());  
+          
           // Close
           document.close();
           System.out.println("Account Transaction PDF File Created");
@@ -84,4 +113,5 @@ public class PdfDAOImplement implements PdfDAO {
 		// TODO Auto-generated method stub
 		return account;
 	}
+
 }
