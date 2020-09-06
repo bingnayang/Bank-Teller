@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.NumberFormat;
 import java.util.List;
 
 import com.itextpdf.text.BaseColor;
@@ -67,9 +68,10 @@ public class PdfDAOImplement implements PdfDAO {
           accountTransaction.setSpacingAfter(20f);
           document.add(accountTransaction);
           
+          NumberFormat formatter = NumberFormat.getCurrencyInstance();
           //Print Account transaction
           for(TransactionInfo list:accountTransactionList) {
-              document.add(new Paragraph(list.getTransaction_Date()+" | "+list.getTransaction_Type()+" | $ "+list.getAmount()));
+              document.add(new Paragraph(list.getTransaction_Date()+" | "+list.getTransaction_Type()+" | "+formatter.format(list.getAmount())));
           }
     
           //Create Account transaction section
@@ -79,7 +81,7 @@ public class PdfDAOImplement implements PdfDAO {
           document.add(accountBalance);
           
           // Print balance
-          document.add(new Paragraph("$"+balance));  
+          document.add(new Paragraph(formatter.format(balance)));  
           
           // Close
           document.close();
