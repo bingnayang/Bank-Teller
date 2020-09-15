@@ -16,9 +16,4 @@ public class TellerController extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/teller-mode.jsp");
 		dispatcher.forward(request,response);
 	}
-
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
-//	}
-
 }

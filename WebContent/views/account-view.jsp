@@ -11,25 +11,25 @@
 <title>Account View Page</title>
 </head>
 <body>
-	<!-- Image and text -->
-	<nav class="navbar navbar-light bg-light mb-2">
-		<a class="navbar-brand" href="#"> <img
-			src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30"
-			height="30" class="d-inline-block align-top" alt=""> Bootstrap
+	<!-- 	Navbar Section -->
+	<nav class="navbar navbar-dark bg-primary mb-2">
+		<a class="navbar-brand" href="#"> <i class="fas fa-piggy-bank"></i>
+			Piggy Bank
 		</a>
+		<form class="form-inline my-2 my-lg-0">
+      		<button class="btn btn-outline-light my-2 my-sm-0" onclick="goBack();">Back To Main Page</button>
+    	</form>
 	</nav>
-
+	
 	<div class="container">
 		<h5>Name: ${accountInfo.lastName}, ${accountInfo.firstName}</h5>
 		<h5>Account Number: ${accountInfo.accountNumber}</h5>
 		<h5>Account Type: ${accountInfo.accountType}</h5>
 		<h5>Account Balance:$ ${accountInfo.accountBalance}</h5>
 	</div>
-	
 	<div class="container">
-		<button type="submit" class="btn btn-primary mb-2"  onclick="window.location.href='${pageContext.request.contextPath}/PDFController?accountNumber=${accountInfo.accountNumber}'">Account Transaction PDF</button>
+		<a href="/Bank-Teller/AccountInfo.pdf" target="_blank">Account PDF</a>
 	</div>
-	
 	<div class="container mb-2">
 		<div class="card">
 			<div class="card-body">
@@ -81,4 +81,10 @@
 		</table>
 	</div>
 </body>
+<script type="text/javascript">
+	
+	function goBack() {
+		location.href = "${pageContext.request.contextPath}/TellerController";
+	}
+</script>
 </html>
