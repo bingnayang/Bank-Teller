@@ -28,7 +28,7 @@
 		<h5>Account Balance:$ ${accountInfo.accountBalance}</h5>
 	</div>
 	<div class="container">
-		<a href="/Bank-Teller/AccountInfo.pdf" target="_blank">Account PDF</a>
+		<a href="AccountInfo.pdf" type="application/pdf" target="_blank">Account PDF</a>
 	</div>
 	<div class="container mb-2">
 		<div class="card">
@@ -73,9 +73,9 @@
 						<td>${transaction.transaction_Time}</td>
 						<td>${transaction.transaction_Type}</td>
 						<fmt:setLocale value = "en_US"/>
-						<td><fmt:formatNumber value = "${transaction.amount}" type = "currency"/></td>
-						<td><button type="button" class="btn btn-info" onclick="window.location.href='${pageContext.request.contextPath}/TransactionController?action=VIEW&id=${transaction.transaction_ID}'">View</button></td>
-					</tr>
+						<td><fmt:formatNumber value = "${transaction.amount}" type = "currency"/></td>					
+ 						<td><button type="button" class="btn btn-info" onclick="window.location.href='${pageContext.request.contextPath}/TransactionDetailController?id=${transaction.transaction_ID}'">View</button></td>
+ 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>

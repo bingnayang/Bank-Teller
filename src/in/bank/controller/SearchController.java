@@ -32,9 +32,6 @@ public class SearchController extends HttpServlet {
 		System.out.println("Account Number: "+account.getAccountNumber());
 		request.setAttribute("account",account);
 		
-		
-		
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/teller-mode.jsp");
 		dispatcher.forward(request,response);
 	}

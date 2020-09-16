@@ -49,4 +49,14 @@
     <servlet-name>PDFController</servlet-name>
     <url-pattern>/PDFController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TransactionDetailController</display-name>
+    <servlet-name>TransactionDetailController</servlet-name>
+    <servlet-class>in.bank.controller.TransactionDetailController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TransactionDetailController</servlet-name>
+    <url-pattern>/TransactionDetailController</url-pattern>
+  </servlet-mapping>
 </web-app>
