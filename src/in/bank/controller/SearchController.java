@@ -28,10 +28,15 @@ public class SearchController extends HttpServlet {
 		AccountInfo accountInfo = new AccountInfo();
 		accountInfo.setFirstName(firstName);
 		accountInfo.setLastName(lastName);
-		AccountInfo account = searchDAO.searchAccount(accountInfo);
-		System.out.println("Account Number: "+account.getAccountNumber());
-		request.setAttribute("account",account);
 		
+		try {
+			AccountInfo account = searchDAO.searchAccount(accountInfo);
+			System.out.println("Account Number: "+account.getAccountNumber());
+			request.setAttribute("account",account);
+		}catch (Exception e) {
+			
+		}
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/teller-mode.jsp");
 		dispatcher.forward(request,response);
 	}

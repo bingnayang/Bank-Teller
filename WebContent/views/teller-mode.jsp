@@ -62,13 +62,30 @@
 					<button type="submit" class="btn btn-primary btn-block">Search</button>
 				</form>
 			</div>
- 			<div class="container">
-				${account.firstName} ${account.lastName} ${account.accountNumber}
+			<div class="container">
+				<c:set var="inputDisplay" value="${account.accountNumber}" />
+				<c:choose>
+					<c:when test="${account.firstName == null || account.lastName == null}">
+						<!-- <a>No Such Account</a> -->
+					</c:when>
+					<c:otherwise>
+ 						<div class="row">
+							<div class="col-sm">
+								Name:
+								<h5>${account.lastName},${account.firstName}</h5>
+							</div>
+							<div class="col-sm">
+								Account Number:
+								<h5>${account.accountNumber}</h5>
+							</div>
+							<div class="col-sm">
+								<button type="button" class="btn btn-link">Search</button>
+							</div>
+						</div>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
-
-
-
 	</div>
 </body>
 </html>
