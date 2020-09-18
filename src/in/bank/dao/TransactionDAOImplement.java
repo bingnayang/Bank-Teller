@@ -179,4 +179,35 @@ public class TransactionDAOImplement implements TransactionDAO {
 		
 	}
 
+	@Override
+	public TransactionInfo getTransactionDetail(String transactionId) {
+		TransactionInfo transactionDetail = null;
+		String sql = "SELECT * " + 
+				"FROM transactionView " + 
+				"WHERE transactionView.transaction_ID = '"+transactionId+"'";
+		try {
+			// Get the database connection
+			connection = DBConnectionUtil.openConnection();
+			// Create a statement
+			statement = connection.createStatement();
+			// Execute the query
+			resultSet = statement.executeQuery(sql);
+			System.out.println("SQL: "+sql);
+			while(resultSet.next()) {
+				transactionDetail = new TransactionInfo();
+				transactionDetail.setAccount_Number(resultSet.getString("account_Number"));
+				transactionDetail.setBranch_Name(resultSet.getString("branch_Name"));
+				transactionDetail.setTransaction_Date(resultSet.getString("date"));
+				transactionDetail.setTransaction_Time(resultSet.getString("time"));
+				transactionDetail.setEmployeeName(resultSet.getString("last_Name"));
+				transactionDetail.setAmount(resultSet.getDouble("amount"));
+				transactionDetail.setTransaction_Type(resultSet.getString("transaction_Name"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+
+		return transactionDetail;
+	}
+
 }

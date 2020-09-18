@@ -79,7 +79,12 @@
 								<h5>${account.accountNumber}</h5>
 							</div>
 							<div class="col-sm">
-								<button type="button" class="btn btn-link">Search</button>
+								<form action="${pageContext.request.contextPath}/TransactionController" method="GET">
+									<input type="hidden" class="form-control" name="firstName" value="${account.firstName}">
+									<input type="hidden" class="form-control" name="lastName" value="${account.lastName}">
+									<input type="hidden" class="form-control" name="accountNumber" value="${account.accountNumber}">
+									<button type="submit" class="btn btn-link">Search</button>
+								</form>
 							</div>
 						</div>
 					</c:otherwise>
