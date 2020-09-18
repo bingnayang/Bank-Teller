@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Account View Page</title>
 </head>
 <body>
@@ -17,7 +19,7 @@
 			Piggy Bank
 		</a>
 		<form class="form-inline my-2 my-lg-0">
-      		<button class="btn btn-outline-light my-2 my-sm-0" onclick="goBack();">Back To Main Page</button>
+      		<a class="btn btn-outline-light my-2 my-sm-0" href="${pageContext.request.contextPath}/TellerController">Back To Main Page</a>
     	</form>
 	</nav>
 	
@@ -81,10 +83,4 @@
 		</table>
 	</div>
 </body>
-<script type="text/javascript">
-	
-	function goBack() {
-		location.href = "${pageContext.request.contextPath}/TellerController";
-	}
-</script>
 </html>
