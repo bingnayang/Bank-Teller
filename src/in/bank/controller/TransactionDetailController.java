@@ -28,8 +28,8 @@ public class TransactionDetailController extends HttpServlet {
 //		System.out.println(transactionId);
 		
 		TransactionInfo transactionDetail = transactionDAO.getTransactionDetail(transactionId);
-		System.out.println("Account #: "+transactionDetail.getAccount_Number());
-		System.out.println("Branch Name: "+transactionDetail.getBranch_Name());
+//		System.out.println("Account #: "+transactionDetail.getAccount_Number());
+//		System.out.println("Branch Name: "+transactionDetail.getBranch_Name());
 		
 		request.setAttribute("transactionDetail",transactionDetail );
 		
