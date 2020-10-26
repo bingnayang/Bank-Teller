@@ -26,12 +26,24 @@
 	</nav>
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h5>Name:</h5>${accountInfo.lastName},
-			${accountInfo.firstName}
-			<h5>Account Number:</h5>${accountInfo.accountNumber}
-			<h5>Account Type:</h5>${accountInfo.accountType}
-			<h5>Account Balance:</h5>
-			$ ${accountInfo.accountBalance}
+			<ul class="list-group">
+			  <li class="list-group-item"> 
+				  <h5>Name:</h5> 
+				  <h6>${accountInfo.lastName}, ${accountInfo.firstName}</h6> 
+			  </li>
+			  <li class="list-group-item">
+			  	<h5>Account Number:</h5>
+			  	<h6>${accountInfo.accountNumber}</h6>
+			  </li>
+			  <li class="list-group-item">
+			  	<h5>Account Type:</h5>
+			  	<h6>${accountInfo.accountType}</h6>
+			  </li>
+			  <li class="list-group-item">
+			  	<h5>Balance:</h5>
+			  	<h6>$ ${accountInfo.accountBalance}</h6>
+			  </li>
+			</ul>
 		</div>
 	</div>
 	<!-- 	<div class="container">
