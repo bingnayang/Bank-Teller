@@ -29,15 +29,15 @@
 					method="GET">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="First Name"
-							name="firstName">
+							name="firstName" required="required">
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Last Name"
-							name="lastName">
+							name="lastName" required="required">
 					</div>
 					<div class="form-group">
 						<input type="number" class="form-control"
-							placeholder="Account Number" name="accountNumber">
+							placeholder="Account Number" name="accountNumber" required="required">
 					</div>
 					<button type="submit" class="btn btn-primary btn-block">Submit</button>
 				</form>
@@ -65,28 +65,56 @@
 			<div class="container">
 				<c:set var="inputDisplay" value="${account.accountNumber}" />
 				<c:choose>
-					<c:when test="${account.firstName == null || account.lastName == null}">
-						<!-- <a>No Such Account</a> -->
+					<c:when
+						test="${account.firstName == null || account.lastName == null}">
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col">First Name</th>
+									<th scope="col">Last Name</th>
+									<th scope="col">Account Number</th>
+								<tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+								<tr>
+							</tbody>
+						</table>
 					</c:when>
 					<c:otherwise>
- 						<div class="row">
-							<div class="col-sm">
-								Name:
-								<h5>${account.lastName},${account.firstName}</h5>
-							</div>
-							<div class="col-sm">
-								Account Number:
-								<h5>${account.accountNumber}</h5>
-							</div>
-							<div class="col-sm">
-								<form action="${pageContext.request.contextPath}/TransactionController" method="GET">
-									<input type="hidden" class="form-control" name="firstName" value="${account.firstName}">
-									<input type="hidden" class="form-control" name="lastName" value="${account.lastName}">
-									<input type="hidden" class="form-control" name="accountNumber" value="${account.accountNumber}">
-									<button type="submit" class="btn btn-link">Search</button>
-								</form>
-							</div>
-						</div>
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col">First Name</th>
+									<th scope="col">Last Name</th>
+									<th scope="col">Account Number</th>
+									<th scope="col">Action</th>
+								<tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>${account.firstName}</td>
+									<td>${account.lastName}</td>
+									<td>${account.accountNumber}</td>
+									<td>
+										<form
+											action="${pageContext.request.contextPath}/TransactionController"
+											method="GET">
+											<input type="hidden" class="form-control" name="firstName"
+												value="${account.firstName}"> <input type="hidden"
+												class="form-control" name="lastName"
+												value="${account.lastName}"> <input type="hidden"
+												class="form-control" name="accountNumber"
+												value="${account.accountNumber}">
+											<button type="submit" class="btn btn-outline-primary btn-sm">Search</button>
+										</form>
+									</td>
+								<tr>
+							</tbody>
+						</table>
 					</c:otherwise>
 				</c:choose>
 			</div>

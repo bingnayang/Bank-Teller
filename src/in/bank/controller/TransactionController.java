@@ -96,6 +96,7 @@ public class TransactionController extends HttpServlet {
 		System.out.println("Last Name: "+lastName);
 		System.out.println("Account Number: "+accountNumber);
 		
+		try {
 		AccountInfo accountInfo = accountDAO.getAccount(firstName,lastName,accountNumber);
 		double balance = accountDAO.getBalance(accountNumber);
 		accountInfo.setAccountBalance(balance);
@@ -104,75 +105,22 @@ public class TransactionController extends HttpServlet {
 //		System.out.println("Last Name: "+accountInfo.getLastName());
 //		System.out.println("Account Number: "+accountInfo.getAccountNumber());
 //		System.out.println("Account Type: "+accountInfo.getAccountType());
-		
-		// Get current info and transaction pdf
-		printExamToPDF(accountInfo,accountTransactionList,balance);
-		
+				
 		request.setAttribute("accountTransactionList",accountTransactionList);	
-		request.setAttribute("accountInfo",accountInfo);	
-
+		request.setAttribute("accountInfo",accountInfo);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/account-view.jsp");
 		dispatcher.forward(request,response);
+		
+		}catch(NullPointerException e) {
+			System.out.println(e);
+			System.out.println("No such account");
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/teller-mode.jsp");
+			dispatcher.forward(request,response);
+			
+		}
 
 	}
-
-	public void printExamToPDF(AccountInfo accountInfo,List<TransactionInfo> accountTransactionList,double balance) {
-	      String dest = "/Users/Bing/eclipse-workspace/Bank-Teller/AccountInfo.pdf";
-	      com.itextpdf.text.Document document = new com.itextpdf.text.Document();
-
-	      try {
-	          PdfWriter.getInstance(document, new FileOutputStream(dest));  
-
-	          // Open
-	          document.open();
-	          // Setup font for title
-	          Font titleFront = new Font();
-	          titleFront.setStyle(Font.BOLD);
-	          titleFront.setSize(20);
-	          Font subTitleFront = new Font();
-	          subTitleFront.setStyle(Font.BOLD);
-	          subTitleFront.setSize(16);
-
-	          // Create Title
-	          Paragraph personalinfo = new Paragraph("Bank of Teller",titleFront);
-	          personalinfo.setAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
-	          personalinfo.setSpacingAfter(20f);
-	          document.add(personalinfo);
-	          
-	          //Print Account information
-	          document.add(new Paragraph("----------------------------------------"));
-	          document.add(new Paragraph("Name: "+accountInfo.getFirstName()+" "+accountInfo.getLastName()));
-	          document.add(new Paragraph("Account Number: "+accountInfo.getAccountNumber()));
-	          document.add(new Paragraph("----------------------------------------"));        
-	          
-	          //Create Account transaction section
-	          Paragraph accountTransaction = new Paragraph("Transactions",subTitleFront);
-	          accountTransaction.setAlignment(com.itextpdf.text.Element.ALIGN_LEFT);
-	          accountTransaction.setSpacingAfter(20f);
-	          document.add(accountTransaction);
-	          
-	          NumberFormat formatter = NumberFormat.getCurrencyInstance();
-	          //Print Account transaction
-	          for(TransactionInfo list:accountTransactionList) {
-	              document.add(new Paragraph(list.getTransaction_Date()+" | "+list.getTransaction_Type()+" | "+formatter.format(list.getAmount())));
-	          }
-	    
-	          //Create Account transaction section
-	          Paragraph accountBalance = new Paragraph("Balance",subTitleFront);
-	          accountBalance.setAlignment(com.itextpdf.text.Element.ALIGN_LEFT);
-	          accountBalance.setSpacingAfter(20f);
-	          document.add(accountBalance);
-	          
-	          // Print balance
-	          document.add(new Paragraph(formatter.format(balance)));  
-	          
-	          // Close
-	          document.close();
-	          System.out.println("Account Transaction PDF File Created");
-	      } catch (Exception e) {
-	          e.getMessage();
-	      }
-	}
-
 	
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,42 +14,52 @@
 </head>
 <body>
 	<!-- 	Navbar Section -->
-	<nav class="navbar navbar-dark bg-primary mb-2">
+	<nav class="navbar navbar-dark bg-primary">
 		<a class="navbar-brand" href="#"> <i class="fas fa-piggy-bank"></i>
 			Piggy Bank
 		</a>
 		<form class="form-inline my-2 my-lg-0">
-      		<a class="btn btn-outline-light my-2 my-sm-0" href="${pageContext.request.contextPath}/TellerController">Back To Main Page</a>
-    	</form>
+			<a class="btn btn-outline-light my-2 my-sm-0"
+				href="${pageContext.request.contextPath}/TellerController">Back
+				To Main Page</a>
+		</form>
 	</nav>
-	
-	<div class="container">
-		<h5>Name: ${accountInfo.lastName}, ${accountInfo.firstName}</h5>
-		<h5>Account Number: ${accountInfo.accountNumber}</h5>
-		<h5>Account Type: ${accountInfo.accountType}</h5>
-		<h5>Account Balance:$ ${accountInfo.accountBalance}</h5>
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h5>Name:</h5>${accountInfo.lastName},
+			${accountInfo.firstName}
+			<h5>Account Number:</h5>${accountInfo.accountNumber}
+			<h5>Account Type:</h5>${accountInfo.accountType}
+			<h5>Account Balance:</h5>
+			$ ${accountInfo.accountBalance}
+		</div>
 	</div>
-	<div class="container">
+	<!-- 	<div class="container">
 		<a href="AccountInfo.pdf" type="application/pdf" target="_blank">Account PDF</a>
-	</div>
+	</div> -->
 	<div class="container mb-2">
 		<div class="card">
 			<div class="card-body">
 				<h4 class="text-center">Deposit / Withdraw</h4>
-				<form action="${pageContext.request.contextPath}/TransactionController" method="POST">
+				<form
+					action="${pageContext.request.contextPath}/TransactionController"
+					method="POST">
 					<div class="form-group">
-						<label for="formControlSelect">Select Deposit/Withdraw</label> 
-						<select class="form-control" name="transactionType">
+						<label for="formControlSelect">Select Deposit/Withdraw</label> <select
+							class="form-control" name="transactionType">
 							<option value="deposit">Deposit</option>
 							<option value="withdraw">Withdraw</option>
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="controlInput">Enter Amount</label> 						
-						<input type="number" class="form-control" name="amount" step="0.01">
-						<input type="hidden" class="form-control" name="accountNumber" value="${accountInfo.accountNumber}">
-						<input type="hidden" class="form-control" name="accountFirstName" value="${accountInfo.firstName}">
-						<input type="hidden" class="form-control" name="accountLastName" value="${accountInfo.lastName}">
+						<label for="controlInput">Enter Amount</label> <input
+							type="number" class="form-control" name="amount" step="0.01">
+						<input type="hidden" class="form-control" name="accountNumber"
+							value="${accountInfo.accountNumber}"> <input
+							type="hidden" class="form-control" name="accountFirstName"
+							value="${accountInfo.firstName}"> <input type="hidden"
+							class="form-control" name="accountLastName"
+							value="${accountInfo.lastName}">
 					</div>
 					<button type="submit" class="btn btn-primary btn-block mb-2">Submit</button>
 				</form>
@@ -59,7 +69,7 @@
 
 	<div class="container">
 		<table class="table">
-			<thead class="thead-dark">
+			<thead class="thead-light">
 				<tr>
 					<th scope="col">Date</th>
 					<th scope="col">Time</th>
@@ -74,13 +84,25 @@
 						<td>${transaction.transaction_Date}</td>
 						<td>${transaction.transaction_Time}</td>
 						<td>${transaction.transaction_Type}</td>
-						<fmt:setLocale value = "en_US"/>
-						<td><fmt:formatNumber value = "${transaction.amount}" type = "currency"/></td>					
- 						<td><button type="button" class="btn btn-info" onclick="window.location.href='${pageContext.request.contextPath}/TransactionDetailController?id=${transaction.transaction_ID}'">View</button></td>
- 					</tr>
+						<fmt:setLocale value="en_US" />
+						<td><fmt:formatNumber value="${transaction.amount}"
+								type="currency" /></td>
+						<td>
+							<form action="${pageContext.request.contextPath}/TransactionDetailController" method="GET">
+								<input type="hidden" class="form-control" name="accountNumber" value="${accountInfo.accountNumber}"> 
+								<input type="hidden" class="form-control" name="accountFirstName" value="${accountInfo.firstName}"> 
+								<input type="hidden" class="form-control" name="accountLastName" value="${accountInfo.lastName}">
+							</form>
+							<button type="button" class="btn btn-outline-primary"
+								onclick="window.location.href='${pageContext.request.contextPath}/TransactionDetailController?id=${transaction.transaction_ID}'">
+								View
+							</button>
+						</td>
+					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
 </body>
+
 </html>
